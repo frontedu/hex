@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title><title>Cores — Eduardo Fernandes</title></title>
+    <link rel="icon" href="assets/favicon.ico" type="image/ico" />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <div class="material-color-picker">
+          <div class="material-color-picker__left-panel">
+            <ol class="color-selector" data-bind="foreach: materialColors">
+              <li>
+                <input name="material-color" type="radio" data-bind="attr: { id: 'materialColor' + $index() }, checked: selectedColor, value: color" />
+                <label data-bind="attr: { for: 'materialColor' + $index(), title: color }, style: { 'color': $data.variations[4].hex }"></label>
+              </li>
+            </ol>
+          </div>
+          <div class="material-color-picker__right-panel" data-bind="foreach: materialColors">
+            <div class="color-palette-wrapper" data-bind="css: { 'js-active': selectedColor() === color }">
+              <h2 class="color-palette-header" data-bind="text: color"></h2>
+              <ol class="color-palette" data-bind="foreach: variations">
+                <li id="clipboardItem" class="color-palette__item" data-bind="attr: { 'data-clipboard-text': hex }, style: { 'background-color': hex }">
+                  <span data-bind="text: weight"></span>
+                  <span data-bind="text: hex"></span>
+                  <span class="copied-indicator" data-bind="css: { 'js-copied': copiedHex() === hex }">Copiado!</span>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="assets/js/knockout.js"></script>
+    <script src="assets/js/clipboard.js"></script>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
